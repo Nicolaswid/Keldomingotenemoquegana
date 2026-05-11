@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CajaCollisionDetection : MonoBehaviour
 {
+ 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +21,15 @@ public class CajaCollisionDetection : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         Debug.Log("Colisión con " + col.gameObject.name);
+        float[] posicionesX = { -2f, 0f, 2f };
+        int indice = Random.Range(0, posicionesX.Length);
+        float posix = posicionesX[indice];       
         if(col.gameObject.CompareTag("Player")){
             Destroy(col.gameObject);
         }
         else if(col.gameObject.CompareTag("Piso")){
-            Destroy(gameObject);
+            gameObject.transform.Translate(posix, 7, 0);
+            gameObject.transform.Translate(0f, 4f, 0f);
         }
     }
 }
